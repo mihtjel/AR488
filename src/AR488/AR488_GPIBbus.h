@@ -1,38 +1,15 @@
 #ifndef AR488_GPIBbus_H
 #define AR488_GPIBbus_H
 
-//#include <SD.h>
 #include "AR488_Config.h"
 #include "AR488_Layouts.h"
 #include "AR488_ComPorts.h"
-
-#ifdef EN_STORAGE
-  #ifdef EN_TEK_4924
-    #include "AR488_Store_Tek_4924.h"
-  #endif
-#endif
-
-/***** AR488_GPIBbus.cpp, ver. 0.51.08, 20/06/2022 *****/
-
 
 /*********************************************/
 /***** GPIB COMMAND & STATUS DEFINITIONS *****/
 /***** vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv *****/
 
 #define GPIB_CFG_SIZE 83
-
-/***** Debug Port *****/
-#ifdef DB_SERIAL_ENABLE
-  extern Stream& debugStream;
-  /* Configured in Config.h */
-  //#define DEBUG_GPIBbus_RECEIVE
-  //#define DEBUG_GPIBbus_SEND
-  //#define DEBUG_GPIBbus_CONTROL
-  //#define SN7516X
-  /* Configured in Config.h */
-
-#endif
-
 
 /***** Universal Multiline commands (apply to all devices) *****/
 #define GC_LLO 0x11
@@ -86,10 +63,7 @@
 /***** vvvvvvvvvvvvvvvvvvvvvvvvvvvv *****/
 
 class GPIBbus {
-
-
   public:
-
     /***** Controller configuration *****/
     union GPIBconf{
       struct{
@@ -157,7 +131,7 @@ class GPIBbus {
     bool receiveData(Stream& dataStream, bool detectEoi, bool detectEndByte, uint8_t endByte);
     void sendData(char *data, uint8_t dsize);
     void clearDataBus();
-    void setControlVal(uint8_t value, uint8_t mask, uint8_t mode);
+    void setControlVal(uint8_t value, uint8_t mask, STATE_MODE mode);
     void setDataVal(uint8_t);
 
 //    void setDeviceAddressedState(uint8_t stat);

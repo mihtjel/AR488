@@ -1,0 +1,7 @@
+{
+    "sketch": "src/AR488/AR488.ino",
+    "board": "arduino:avr:micro",
+    "port": "COM3",
+    "programmer": "avrispmkii",
+    "output": "build"
+}
